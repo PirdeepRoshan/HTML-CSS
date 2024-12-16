@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cal.css">
+    <title>FD Rate Calculator</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h2>FD Rate Calculator</h2>
+        <div class="inputdiv">
+            <label for="input">Enter the FD duration in months:</label>
+            <input type="number" id="input" placeholder="e.g., 6">
+        </div>
+        <div>
+            <button type="button" onclick="calculateRate()">Calculate Interest Rate</button>
+        </div>
+        <div id="result"></div> 
+    </div>
+    <script>
+        function calculateRate() {
+            const months = Number(document.getElementById("input").value);
+            let rate = 0;
+
+            // Validate input
+            if (isNaN(months) || months <= 0) {
+                document.getElementById('result').innerHTML = "Please enter a valid duration in months.";
+                return;
+            }
+
+            if (months < 3)
+                rate = 5.8;
+            else if (months >= 3 && months <= 6)
+                rate = 6.5;
+            else if (months >= 7 && months <= 9)
+                rate = 6.8;
+            else
+                rate = 7;
+
+            document.getElementById('result').innerHTML = `Your interest rate is ${rate}%.`;
+        }
+    </script>
+</body>
+</html>
